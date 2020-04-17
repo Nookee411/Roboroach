@@ -1,0 +1,10 @@
+C:\Users\danii\OneDrive\Desktop\Учеба\2 курс\2 семестр\ООП\Robocroach\Robocroach\obj\Debug\Robocroach.Form1.resources
+C:\Users\danii\OneDrive\Desktop\Учеба\2 курс\2 семестр\ООП\Robocroach\Robocroach\obj\Debug\Robocroach.Properties.Resources.resources
+C:\Users\danii\OneDrive\Desktop\Учеба\2 курс\2 семестр\ООП\Robocroach\Robocroach\obj\Debug\Robocroach.csproj.GenerateResource.cache
+C:\Users\danii\OneDrive\Desktop\Учеба\2 курс\2 семестр\ООП\Robocroach\Robocroach\obj\Debug\Robocroach.csproj.CoreCompileInputs.cache
+C:\Users\danii\OneDrive\Desktop\Учеба\2 курс\2 семестр\ООП\Robocroach\Robocroach\bin\Debug\Robocroach.exe.config
+C:\Users\danii\OneDrive\Desktop\Учеба\2 курс\2 семестр\ООП\Robocroach\Robocroach\bin\Debug\Robocroach.exe
+C:\Users\danii\OneDrive\Desktop\Учеба\2 курс\2 семестр\ООП\Robocroach\Robocroach\bin\Debug\Robocroach.pdb
+C:\Users\danii\OneDrive\Desktop\Учеба\2 курс\2 семестр\ООП\Robocroach\Robocroach\obj\Debug\Robocroach.exe
+C:\Users\danii\OneDrive\Desktop\Учеба\2 курс\2 семестр\ООП\Robocroach\Robocroach\obj\Debug\Robocroach.pdb
+C:\Users\danii\OneDrive\Desktop\Учеба\2 курс\2 семестр\ООП\Robocroach\Robocroach\obj\Debug\Robocroach.csprojAssemblyReference.cache
