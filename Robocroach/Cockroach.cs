@@ -10,7 +10,7 @@ namespace Robocroach
 {
     class Cockroach
     {
-        private Bitmap image;
+        public Bitmap image;
         direction trend = direction.Right;
         const int step = 30;
         //Loaction
@@ -21,18 +21,10 @@ namespace Robocroach
         public int X { get; set; }
         public int Y { get; set; }
 
+        //Repainting picture
         
 
-        public void Show(PictureBox picture, Panel owner)
-        {
-            //setting location for image
-            X = (owner.Width - image.Width) / 2;
-            Y = (owner.Height - image.Height) / 2;
-            RePaint(picture);
-            //Setting contol over picturebox to panel
-            owner.Controls.Add(picture);
-
-        }
+        
         public void Step()
         {
             switch (trend)

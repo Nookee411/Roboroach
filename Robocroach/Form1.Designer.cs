@@ -31,15 +31,16 @@
             this.components = new System.ComponentModel.Container();
             this.panelField = new System.Windows.Forms.Panel();
             this.panelGroup = new System.Windows.Forms.Panel();
-            this.Algorithm = new System.Windows.Forms.ListBox();
-            this.buttonUp = new System.Windows.Forms.Button();
-            this.buttonDown = new System.Windows.Forms.Button();
-            this.buttonLeft = new System.Windows.Forms.Button();
-            this.buttonRight = new System.Windows.Forms.Button();
-            this.buttonStep = new System.Windows.Forms.Button();
-            this.buttonNew = new System.Windows.Forms.Button();
-            this.buttonRun = new System.Windows.Forms.Button();
+            this.buttonChangeSkin = new System.Windows.Forms.Button();
             this.buttonClear = new System.Windows.Forms.Button();
+            this.buttonRun = new System.Windows.Forms.Button();
+            this.buttonNew = new System.Windows.Forms.Button();
+            this.buttonStep = new System.Windows.Forms.Button();
+            this.buttonRight = new System.Windows.Forms.Button();
+            this.buttonLeft = new System.Windows.Forms.Button();
+            this.buttonDown = new System.Windows.Forms.Button();
+            this.buttonUp = new System.Windows.Forms.Button();
+            this.Algorithm = new System.Windows.Forms.ListBox();
             this.timerAlgorithm = new System.Windows.Forms.Timer(this.components);
             this.panelGroup.SuspendLayout();
             this.SuspendLayout();
@@ -51,12 +52,15 @@
             this.panelField.Name = "panelField";
             this.panelField.Size = new System.Drawing.Size(618, 575);
             this.panelField.TabIndex = 0;
+            this.panelField.Click += new System.EventHandler(this.panelField_Click);
             this.panelField.DragDrop += new System.Windows.Forms.DragEventHandler(this.panelField_DragDrop);
             this.panelField.DragEnter += new System.Windows.Forms.DragEventHandler(this.panelField_DragEnter);
+            this.panelField.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelField_MouseDown);
             // 
             // panelGroup
             // 
             this.panelGroup.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelGroup.Controls.Add(this.buttonChangeSkin);
             this.panelGroup.Controls.Add(this.buttonClear);
             this.panelGroup.Controls.Add(this.buttonRun);
             this.panelGroup.Controls.Add(this.buttonNew);
@@ -70,73 +74,25 @@
             this.panelGroup.Size = new System.Drawing.Size(200, 575);
             this.panelGroup.TabIndex = 1;
             // 
-            // Algorithm
+            // buttonChangeSkin
             // 
-            this.Algorithm.FormattingEnabled = true;
-            this.Algorithm.Location = new System.Drawing.Point(844, 13);
-            this.Algorithm.Name = "Algorithm";
-            this.Algorithm.Size = new System.Drawing.Size(194, 576);
-            this.Algorithm.TabIndex = 2;
+            this.buttonChangeSkin.Location = new System.Drawing.Point(37, 403);
+            this.buttonChangeSkin.Name = "buttonChangeSkin";
+            this.buttonChangeSkin.Size = new System.Drawing.Size(124, 34);
+            this.buttonChangeSkin.TabIndex = 8;
+            this.buttonChangeSkin.Text = "Change Skin";
+            this.buttonChangeSkin.UseVisualStyleBackColor = true;
+            this.buttonChangeSkin.Click += new System.EventHandler(this.buttonChangeSkin_Click);
             // 
-            // buttonUp
+            // buttonClear
             // 
-            this.buttonUp.Location = new System.Drawing.Point(37, 29);
-            this.buttonUp.Name = "buttonUp";
-            this.buttonUp.Size = new System.Drawing.Size(124, 34);
-            this.buttonUp.TabIndex = 0;
-            this.buttonUp.Text = "Up";
-            this.buttonUp.UseVisualStyleBackColor = true;
-            this.buttonUp.Click += new System.EventHandler(this.buttonUp_Click);
-            // 
-            // buttonDown
-            // 
-            this.buttonDown.Location = new System.Drawing.Point(37, 69);
-            this.buttonDown.Name = "buttonDown";
-            this.buttonDown.Size = new System.Drawing.Size(124, 34);
-            this.buttonDown.TabIndex = 1;
-            this.buttonDown.Text = "Down";
-            this.buttonDown.UseVisualStyleBackColor = true;
-            this.buttonDown.Click += new System.EventHandler(this.buttonUp_Click);
-            // 
-            // buttonLeft
-            // 
-            this.buttonLeft.Location = new System.Drawing.Point(37, 109);
-            this.buttonLeft.Name = "buttonLeft";
-            this.buttonLeft.Size = new System.Drawing.Size(124, 34);
-            this.buttonLeft.TabIndex = 2;
-            this.buttonLeft.Text = "Left";
-            this.buttonLeft.UseVisualStyleBackColor = true;
-            this.buttonLeft.Click += new System.EventHandler(this.buttonUp_Click);
-            // 
-            // buttonRight
-            // 
-            this.buttonRight.Location = new System.Drawing.Point(37, 149);
-            this.buttonRight.Name = "buttonRight";
-            this.buttonRight.Size = new System.Drawing.Size(124, 34);
-            this.buttonRight.TabIndex = 3;
-            this.buttonRight.Text = "Right";
-            this.buttonRight.UseVisualStyleBackColor = true;
-            this.buttonRight.Click += new System.EventHandler(this.buttonUp_Click);
-            // 
-            // buttonStep
-            // 
-            this.buttonStep.Location = new System.Drawing.Point(37, 189);
-            this.buttonStep.Name = "buttonStep";
-            this.buttonStep.Size = new System.Drawing.Size(124, 34);
-            this.buttonStep.TabIndex = 4;
-            this.buttonStep.Text = "Step";
-            this.buttonStep.UseVisualStyleBackColor = true;
-            this.buttonStep.Click += new System.EventHandler(this.buttonStep_Click);
-            // 
-            // buttonNew
-            // 
-            this.buttonNew.Location = new System.Drawing.Point(37, 443);
-            this.buttonNew.Name = "buttonNew";
-            this.buttonNew.Size = new System.Drawing.Size(124, 34);
-            this.buttonNew.TabIndex = 5;
-            this.buttonNew.Text = "New Hero";
-            this.buttonNew.UseVisualStyleBackColor = true;
-            this.buttonNew.Click += new System.EventHandler(this.buttonNew_Click);
+            this.buttonClear.Location = new System.Drawing.Point(37, 523);
+            this.buttonClear.Name = "buttonClear";
+            this.buttonClear.Size = new System.Drawing.Size(124, 34);
+            this.buttonClear.TabIndex = 7;
+            this.buttonClear.Text = "Clear";
+            this.buttonClear.UseVisualStyleBackColor = true;
+            this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);
             // 
             // buttonRun
             // 
@@ -148,15 +104,73 @@
             this.buttonRun.UseVisualStyleBackColor = true;
             this.buttonRun.Click += new System.EventHandler(this.buttonRun_Click);
             // 
-            // buttonClear
+            // buttonNew
             // 
-            this.buttonClear.Location = new System.Drawing.Point(37, 523);
-            this.buttonClear.Name = "buttonClear";
-            this.buttonClear.Size = new System.Drawing.Size(124, 34);
-            this.buttonClear.TabIndex = 7;
-            this.buttonClear.Text = "Clear";
-            this.buttonClear.UseVisualStyleBackColor = true;
-            this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);
+            this.buttonNew.Location = new System.Drawing.Point(37, 443);
+            this.buttonNew.Name = "buttonNew";
+            this.buttonNew.Size = new System.Drawing.Size(124, 34);
+            this.buttonNew.TabIndex = 5;
+            this.buttonNew.Text = "New Hero";
+            this.buttonNew.UseVisualStyleBackColor = true;
+            this.buttonNew.Click += new System.EventHandler(this.buttonNew_Click);
+            // 
+            // buttonStep
+            // 
+            this.buttonStep.Location = new System.Drawing.Point(37, 189);
+            this.buttonStep.Name = "buttonStep";
+            this.buttonStep.Size = new System.Drawing.Size(124, 34);
+            this.buttonStep.TabIndex = 4;
+            this.buttonStep.Text = "Step";
+            this.buttonStep.UseVisualStyleBackColor = true;
+            this.buttonStep.Click += new System.EventHandler(this.buttonStep_Click);
+            // 
+            // buttonRight
+            // 
+            this.buttonRight.Location = new System.Drawing.Point(37, 149);
+            this.buttonRight.Name = "buttonRight";
+            this.buttonRight.Size = new System.Drawing.Size(124, 34);
+            this.buttonRight.TabIndex = 3;
+            this.buttonRight.Text = "Right";
+            this.buttonRight.UseVisualStyleBackColor = true;
+            this.buttonRight.Click += new System.EventHandler(this.buttonUp_Click);
+            // 
+            // buttonLeft
+            // 
+            this.buttonLeft.Location = new System.Drawing.Point(37, 109);
+            this.buttonLeft.Name = "buttonLeft";
+            this.buttonLeft.Size = new System.Drawing.Size(124, 34);
+            this.buttonLeft.TabIndex = 2;
+            this.buttonLeft.Text = "Left";
+            this.buttonLeft.UseVisualStyleBackColor = true;
+            this.buttonLeft.Click += new System.EventHandler(this.buttonUp_Click);
+            // 
+            // buttonDown
+            // 
+            this.buttonDown.Location = new System.Drawing.Point(37, 69);
+            this.buttonDown.Name = "buttonDown";
+            this.buttonDown.Size = new System.Drawing.Size(124, 34);
+            this.buttonDown.TabIndex = 1;
+            this.buttonDown.Text = "Down";
+            this.buttonDown.UseVisualStyleBackColor = true;
+            this.buttonDown.Click += new System.EventHandler(this.buttonUp_Click);
+            // 
+            // buttonUp
+            // 
+            this.buttonUp.Location = new System.Drawing.Point(37, 29);
+            this.buttonUp.Name = "buttonUp";
+            this.buttonUp.Size = new System.Drawing.Size(124, 34);
+            this.buttonUp.TabIndex = 0;
+            this.buttonUp.Text = "Up";
+            this.buttonUp.UseVisualStyleBackColor = true;
+            this.buttonUp.Click += new System.EventHandler(this.buttonUp_Click);
+            // 
+            // Algorithm
+            // 
+            this.Algorithm.FormattingEnabled = true;
+            this.Algorithm.Location = new System.Drawing.Point(844, 13);
+            this.Algorithm.Name = "Algorithm";
+            this.Algorithm.Size = new System.Drawing.Size(194, 576);
+            this.Algorithm.TabIndex = 2;
             // 
             // timerAlgorithm
             // 
@@ -173,6 +187,9 @@
             this.Controls.Add(this.panelField);
             this.Name = "Form1";
             this.Text = "Robocroach";
+            this.Click += new System.EventHandler(this.Form1_Click);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
             this.panelGroup.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -192,6 +209,7 @@
         private System.Windows.Forms.Button buttonUp;
         private System.Windows.Forms.ListBox Algorithm;
         private System.Windows.Forms.Timer timerAlgorithm;
+        private System.Windows.Forms.Button buttonChangeSkin;
     }
 }
 
