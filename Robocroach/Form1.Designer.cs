@@ -42,6 +42,7 @@
             this.buttonUp = new System.Windows.Forms.Button();
             this.Algorithm = new System.Windows.Forms.ListBox();
             this.timerAlgorithm = new System.Windows.Forms.Timer(this.components);
+            this.buttonDelete = new System.Windows.Forms.Button();
             this.panelGroup.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,6 +61,7 @@
             // panelGroup
             // 
             this.panelGroup.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelGroup.Controls.Add(this.buttonDelete);
             this.panelGroup.Controls.Add(this.buttonChangeSkin);
             this.panelGroup.Controls.Add(this.buttonClear);
             this.panelGroup.Controls.Add(this.buttonRun);
@@ -177,6 +179,16 @@
             this.timerAlgorithm.Interval = 1000;
             this.timerAlgorithm.Tick += new System.EventHandler(this.timerAlgorithm_Tick);
             // 
+            // buttonDelete
+            // 
+            this.buttonDelete.Location = new System.Drawing.Point(37, 363);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(124, 34);
+            this.buttonDelete.TabIndex = 9;
+            this.buttonDelete.Text = "Delete Active Roaches";
+            this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -210,6 +222,7 @@
         private System.Windows.Forms.ListBox Algorithm;
         private System.Windows.Forms.Timer timerAlgorithm;
         private System.Windows.Forms.Button buttonChangeSkin;
+        private System.Windows.Forms.Button buttonDelete;
     }
 }
 

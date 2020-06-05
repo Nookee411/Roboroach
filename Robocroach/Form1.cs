@@ -14,12 +14,12 @@ namespace Robocroach
     enum direction : byte {Up,Right,Down,Left };
     public partial class Form1 : Form
     {
-        Cockroach activeCockroach;
-        PictureBox pictureboxWork;
+        List<Cockroach> activeCockroach;
+        List<PictureBox> pictureboxWork;
         List<Cockroach> LC;
         List<PictureBox> PB;
         List<int> selectedRoaches;
-        bool selectionActive = false;
+        bool selectionActive = true;
         int algStep=0;
         string cockroach_Skin = "../../cockroach1.png";
         public Form1()
@@ -28,6 +28,8 @@ namespace Robocroach
             LC = new List<Cockroach>();
             PB = new List<PictureBox>();
             selectedRoaches = new List<int>();
+            activeCockroach = new List<Cockroach>();
+            pictureboxWork = new List<PictureBox>();
         }
 
         private void buttonNew_Click(object sender, EventArgs e)
@@ -35,13 +37,15 @@ namespace Robocroach
             Cockroach cockroach = new Cockroach(new Bitmap(cockroach_Skin));
             PictureBox p = new PictureBox();
             p.BackColor = Color.Transparent;
-            activeCockroach = cockroach;
-            pictureboxWork = p;
+            activeCockroach.Clear();
+            activeCockroach.Add(cockroach);
+            pictureboxWork.Clear();
+            pictureboxWork.Add(p);
             show();
             p.MouseMove += new MouseEventHandler(IMouseMove);
             p.MouseDown += new MouseEventHandler(IMouseDown);
             PB.Add(p);
-            LC.Add(activeCockroach);
+            LC.Add(cockroach);
             panelField.AllowDrop = true;
         }
 
@@ -49,9 +53,27 @@ namespace Robocroach
         {
             if (e.Button == MouseButtons.Left)
             {
+               
                 int k = PB.IndexOf(sender as PictureBox);//запоминаем номер нажатого компонента
-                pictureboxWork = sender as PictureBox;//объявляет его рабочим
-                activeCockroach = LC[k];//по найденному номеру находим Таракана в списке
+                //объявляет его рабочим
+                if (!selectionActive)
+                {
+                    for (int i = 0; i < pictureboxWork.Count; i++)
+                        pictureboxWork[i].BackColor = Color.Transparent;
+                    activeCockroach.Clear();
+                    pictureboxWork.Clear();
+                }
+                pictureboxWork.Add(sender as PictureBox);
+                pictureboxWork[pictureboxWork.Count - 1].BackColor = Color.Blue;
+                if(k>=0)
+                    activeCockroach.Add(LC[k]);//по найденному номеру находим Таракана
+            }
+            else if(e.Button == MouseButtons.Right)
+            {
+                for (int i = 0; i < pictureboxWork.Count; i++)
+                    pictureboxWork[i].BackColor = Color.Transparent;
+                activeCockroach.Clear();
+                pictureboxWork.Clear();
             }
         }
 
@@ -85,8 +107,12 @@ namespace Robocroach
             //вычисляем и устанавливаем Location для PictureBox в Panel
             picture.Location = pointDrop;
             //устанавливаем координаты для X и Y для рабочего таракана
-            activeCockroach.X = picture.Location.X;
-            activeCockroach.Y = picture.Location.Y;
+            for (int i = 0; i < activeCockroach.Count; i++)
+            {
+                activeCockroach[i].X = picture.Location.X;
+                activeCockroach[i].Y = picture.Location.Y;
+                
+            }
             picture.Parent = panel;
         }
 
@@ -118,9 +144,16 @@ namespace Robocroach
                 string s = (string)Algorithm.Items[algStep];
                 Algorithm.SetSelected(algStep, true);
                 if (s == "Step")
-                    activeCockroach.Step();
+                {
+                    for (int i = 0; i < activeCockroach.Count; i++)
+                        activeCockroach[i].Step();
+                }
+
                 else
-                    activeCockroach.ChangeTrend(s[0]);
+                {
+                    for(int i=0;i<activeCockroach.Count;i++)
+                        activeCockroach[i].ChangeTrend(s[0]);
+                }
                 RePaint();
                 algStep++;
             }
@@ -129,22 +162,29 @@ namespace Robocroach
         private void buttonStep_Click(object sender, EventArgs e)
         {
             if(activeCockroach!=null)
-                activeCockroach.Step();
+                foreach (Cockroach active in activeCockroach)
+                    active.Step();
             Algorithm.Items.Add((sender as Button).Text);
         }
         public void RePaint() //Paintint image with new location
         {
-            pictureboxWork.Bounds = new Rectangle(activeCockroach.X,activeCockroach.Y, activeCockroach.image.Width, activeCockroach.image.Height);//New bounds
-            pictureboxWork.Image = activeCockroach.image;
+            for(int i=0;i<activeCockroach.Count;i++)
+            { 
+                pictureboxWork[i].Bounds = new Rectangle(activeCockroach[i].X, activeCockroach[i].Y, activeCockroach[i].image.Width, activeCockroach[i].image.Height);//New bounds
+                pictureboxWork[i].Image = activeCockroach[i].image;
+            }
         }
         public void show() //setting location of cockroach
         {
-            //setting location for image
-            activeCockroach.X = (panelField.Width - activeCockroach.image.Width) / 2;
-            activeCockroach.Y = (panelField.Height -activeCockroach.image.Height) / 2;
-            RePaint();
-            //Setting contol over picturebox to panel
-            panelField.Controls.Add(pictureboxWork);
+            for (int i = 0; i < activeCockroach.Count; i++)
+            {
+                //setting location for image
+                activeCockroach[i].X = (panelField.Width - activeCockroach[i].image.Width) / 2;
+                activeCockroach[i].Y = (panelField.Height - activeCockroach[i].image.Height) / 2;
+                RePaint();
+                //Setting contol over picturebox to panel
+                panelField.Controls.Add(pictureboxWork[i]);
+            }
 
         }
 
@@ -152,13 +192,14 @@ namespace Robocroach
         {
             OpenFileDialog file = new OpenFileDialog();
             file.ShowDialog();
-            cockroach_Skin = file.FileName;
+            if(file.FileName!="")
+                cockroach_Skin = file.FileName;
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             //selection activated
-            if (e.KeyCode == Keys.Control)
+            if (e.Modifiers == Keys.Control)
                 selectionActive = true;
                 
         }
@@ -192,6 +233,21 @@ namespace Robocroach
             }
             else
                 selectedRoaches.Clear();
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            
+            for(int i=0;i<activeCockroach.Count;i++)
+            {
+               
+                LC.Remove(activeCockroach[i]);
+                PB.Remove(pictureboxWork[i]);
+            }
+            activeCockroach.Clear();
+            pictureboxWork.Clear();
+            panelField.Refresh();
+            RePaint();
         }
     }
 }
