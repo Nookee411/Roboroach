@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.panelField = new System.Windows.Forms.Panel();
             this.panelGroup = new System.Windows.Forms.Panel();
+            this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonChangeSkin = new System.Windows.Forms.Button();
             this.buttonClear = new System.Windows.Forms.Button();
             this.buttonRun = new System.Windows.Forms.Button();
@@ -42,7 +43,6 @@
             this.buttonUp = new System.Windows.Forms.Button();
             this.Algorithm = new System.Windows.Forms.ListBox();
             this.timerAlgorithm = new System.Windows.Forms.Timer(this.components);
-            this.buttonDelete = new System.Windows.Forms.Button();
             this.panelGroup.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,10 +53,8 @@
             this.panelField.Name = "panelField";
             this.panelField.Size = new System.Drawing.Size(618, 575);
             this.panelField.TabIndex = 0;
-            this.panelField.Click += new System.EventHandler(this.panelField_Click);
             this.panelField.DragDrop += new System.Windows.Forms.DragEventHandler(this.panelField_DragDrop);
             this.panelField.DragEnter += new System.Windows.Forms.DragEventHandler(this.panelField_DragEnter);
-            this.panelField.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelField_MouseDown);
             // 
             // panelGroup
             // 
@@ -75,6 +73,16 @@
             this.panelGroup.Name = "panelGroup";
             this.panelGroup.Size = new System.Drawing.Size(200, 575);
             this.panelGroup.TabIndex = 1;
+            // 
+            // buttonDelete
+            // 
+            this.buttonDelete.Location = new System.Drawing.Point(37, 363);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(124, 34);
+            this.buttonDelete.TabIndex = 9;
+            this.buttonDelete.Text = "Delete Active Roaches";
+            this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // buttonChangeSkin
             // 
@@ -179,16 +187,6 @@
             this.timerAlgorithm.Interval = 1000;
             this.timerAlgorithm.Tick += new System.EventHandler(this.timerAlgorithm_Tick);
             // 
-            // buttonDelete
-            // 
-            this.buttonDelete.Location = new System.Drawing.Point(37, 363);
-            this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Size = new System.Drawing.Size(124, 34);
-            this.buttonDelete.TabIndex = 9;
-            this.buttonDelete.Text = "Delete Active Roaches";
-            this.buttonDelete.UseVisualStyleBackColor = true;
-            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -199,9 +197,6 @@
             this.Controls.Add(this.panelField);
             this.Name = "Form1";
             this.Text = "Robocroach";
-            this.Click += new System.EventHandler(this.Form1_Click);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
             this.panelGroup.ResumeLayout(false);
             this.ResumeLayout(false);
 

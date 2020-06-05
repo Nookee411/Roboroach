@@ -18,7 +18,6 @@ namespace Robocroach
         List<PictureBox> pictureboxWork;
         List<Cockroach> LC;
         List<PictureBox> PB;
-        List<int> selectedRoaches;
         bool selectionActive = true;
         int algStep=0;
         string cockroach_Skin = "../../cockroach1.png";
@@ -27,7 +26,6 @@ namespace Robocroach
             InitializeComponent();
             LC = new List<Cockroach>();
             PB = new List<PictureBox>();
-            selectedRoaches = new List<int>();
             activeCockroach = new List<Cockroach>();
             pictureboxWork = new List<PictureBox>();
         }
@@ -53,11 +51,11 @@ namespace Robocroach
         {
             if (e.Button == MouseButtons.Left)
             {
-               
                 int k = PB.IndexOf(sender as PictureBox);//запоминаем номер нажатого компонента
                 //объявляет его рабочим
-                if (!selectionActive)
+                if (ModifierKeys!=Keys.Control)
                 {
+                    
                     for (int i = 0; i < pictureboxWork.Count; i++)
                         pictureboxWork[i].BackColor = Color.Transparent;
                     activeCockroach.Clear();
@@ -196,31 +194,6 @@ namespace Robocroach
                 cockroach_Skin = file.FileName;
         }
 
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
-        {
-            //selection activated
-            if (e.Modifiers == Keys.Control)
-                selectionActive = true;
-                
-        }
-
-        private void Form1_KeyUp(object sender, KeyEventArgs e)
-        {
-            //selection deactivated
-            if (e.KeyCode == Keys.Control)
-                selectionActive = false;
-        }
-
-        private void Form1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panelField_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void panelField_MouseDown(object sender, MouseEventArgs e)
         {
             //if we have selection active, add roach to party, otherwise clear party
@@ -232,7 +205,7 @@ namespace Robocroach
                 }
             }
             else
-                selectedRoaches.Clear();
+                activeCockroach.Clear();
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
@@ -240,7 +213,7 @@ namespace Robocroach
             
             for(int i=0;i<activeCockroach.Count;i++)
             {
-               
+                pictureboxWork[i].Dispose();
                 LC.Remove(activeCockroach[i]);
                 PB.Remove(pictureboxWork[i]);
             }
