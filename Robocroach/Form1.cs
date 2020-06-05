@@ -18,7 +18,6 @@ namespace Robocroach
         List<PictureBox> pictureboxWork;
         List<Cockroach> LC;
         List<PictureBox> PB;
-        bool selectionActive = true;
         int algStep=0;
         string cockroach_Skin = "../../cockroach1.png";
         public Form1()
@@ -32,7 +31,9 @@ namespace Robocroach
 
         private void buttonNew_Click(object sender, EventArgs e)
         {
+
             Cockroach cockroach = new Cockroach(new Bitmap(cockroach_Skin));
+            cockroach.image = new Bitmap(cockroach.image, new Size(100, 100));
             PictureBox p = new PictureBox();
             p.BackColor = Color.Transparent;
             activeCockroach.Clear();
@@ -192,20 +193,6 @@ namespace Robocroach
             file.ShowDialog();
             if(file.FileName!="")
                 cockroach_Skin = file.FileName;
-        }
-
-        private void panelField_MouseDown(object sender, MouseEventArgs e)
-        {
-            //if we have selection active, add roach to party, otherwise clear party
-            if (selectionActive)
-            {
-                if(e.Button == MouseButtons.Left)
-                {
-                    panelField.BackColor = Color.Red;
-                }
-            }
-            else
-                activeCockroach.Clear();
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
