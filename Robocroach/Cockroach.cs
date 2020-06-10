@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Robocroach.State;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -10,105 +11,42 @@ namespace Robocroach
 {
     class Cockroach
     {
+        private int x;
+        private int y;
         public Bitmap image;
-        direction trend = direction.Right;
         const int step = 30;
+        IDirection direction;
         //Loaction
-        public Cockroach(Bitmap _Image)
+        public Cockroach(Bitmap _image)
         {
-            this.image = _Image;
+            this.image = _image;
+            direction = new Direction_RIGHT(image);
         }
-        public int X { get; set; }
-        public int Y { get; set; }
+        public int X 
+        {
+            get { return x; }
+            set { x = value; }
+        }
+
+        public int Y
+        {
+            get { return y; }
+            set { y = value; }
+        }
 
         //Repainting picture
-        
 
-        
+
+
         public void Step()
         {
-            switch (trend)
-            {
-                case direction.Right:
-                    X += step; break;
-                case direction.Left:
-                    X -= step; break;
-                case direction.Up:
-                    Y -= step; break;
-                case direction.Down:
-                    Y += step; break;
-            }
+            direction.Step(ref x,ref y);
         }
 
-        public void ChangeTrend(char c)
+        public void ChangeTrend(string command)
         {
-            direction newtrend = trend;
-            for (direction y = direction.Up; y <= direction.Left; y++)
-                if (char.ToLower(c) == char.ToLower(y.ToString()[0]))
-                {
-                    newtrend = y;
-                    break;
-                }
-            switch (trend)
-            {
-                case direction.Up:
-                    switch (newtrend)
-                    {
-                        case direction.Right:
-                            image.RotateFlip(RotateFlipType.Rotate90FlipNone);
-                            break;
-                        case direction.Down:
-                            image.RotateFlip(RotateFlipType.Rotate180FlipNone);
-                            break;
-                        case direction.Left:
-                            image.RotateFlip(RotateFlipType.Rotate270FlipNone);
-                            break;
-                    }
-                    break;
-                case direction.Right:
-                    switch (newtrend)
-                    {
-                        case direction.Down:
-                            image.RotateFlip(RotateFlipType.Rotate90FlipNone);
-                            break;
-                        case direction.Left:
-                            image.RotateFlip(RotateFlipType.Rotate180FlipNone);
-                            break;
-                        case direction.Up:
-                            image.RotateFlip(RotateFlipType.Rotate270FlipNone);
-                            break;
-                    }
-                    break;
-                case direction.Down:
-                    switch (newtrend)
-                    {
-                        case direction.Left:
-                            image.RotateFlip(RotateFlipType.Rotate90FlipNone);
-                            break;
-                        case direction.Up:
-                            image.RotateFlip(RotateFlipType.Rotate180FlipNone);
-                            break;
-                        case direction.Right:
-                            image.RotateFlip(RotateFlipType.Rotate270FlipNone);
-                            break;
-                    }
-                    break;
-                case direction.Left:
-                    switch (newtrend)
-                    {
-                        case direction.Up:
-                            image.RotateFlip(RotateFlipType.Rotate90FlipNone);
-                            break;
-                        case direction.Right:
-                            image.RotateFlip(RotateFlipType.Rotate180FlipNone);
-                            break;
-                        case direction.Down:
-                            image.RotateFlip(RotateFlipType.Rotate270FlipNone);
-                            break;
-                    }
-                    break;
-            }
-            trend = newtrend;
+            direction = direction.ChangeTrend(command);
+            image = direction.Image;
         }
     }
 }

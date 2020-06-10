@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace Robocroach
 {
-    enum direction : byte {Up,Right,Down,Left };
+    enum Direction : byte {Up,Right,Down,Left };
     public partial class Form1 : Form
     {
         List<Cockroach> activeCockroach;
@@ -151,7 +151,7 @@ namespace Robocroach
                 else
                 {
                     for(int i=0;i<activeCockroach.Count;i++)
-                        activeCockroach[i].ChangeTrend(s[0]);
+                        activeCockroach[i].ChangeTrend(s);
                 }
                 RePaint();
                 algStep++;

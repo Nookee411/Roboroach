@@ -47,12 +47,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cockroach.cs" />
+    <Compile Include="State\Direction LEFT.cs" />
+    <Compile Include="State\Direction RIGHT.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="State\Direction UP .cs" />
+    <Compile Include="State\DirectionState.cs" />
+    <Compile Include="State\Direction DOWN.cs" />
+    <Compile Include="State\IDirection.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
