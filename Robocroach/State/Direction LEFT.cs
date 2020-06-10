@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace Robocroach.State
 {
-    class Direction_LEFT:DirectionState,IDirection
+    class Direction_LEFT:DirectionState
     {
         public Direction_LEFT(Bitmap image)
         {
@@ -20,19 +20,19 @@ namespace Robocroach.State
         /// </summary>
         public Direction Trend => Direction.Left;
 
-        public Bitmap Image => this.image;
+        override public Bitmap Image => this.image;
 
         /// <summary>
         /// Changes coordinates according to the current direction
         /// </summary>
         /// <param name="X"></param>
         /// <param name="Y"></param>
-        public void Step(ref int X, ref int Y)
+        override public void Step(ref int X, ref int Y)
         {
             X -= step;
         }
 
-        public IDirection ChangeTrend(string command)
+        override public DirectionState ChangeTrend(string command)
         {
             Direction newtrend = Trends[command];
             switch (newtrend)

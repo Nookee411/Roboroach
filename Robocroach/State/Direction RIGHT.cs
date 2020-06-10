@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Robocroach
 {
-    class Direction_RIGHT :DirectionState, IDirection
+    class Direction_RIGHT :DirectionState
     {
         public Direction_RIGHT(Bitmap image)
         {
@@ -21,19 +21,19 @@ namespace Robocroach
         /// </summary>
         public Direction Trend => Direction.Right;
 
-        public Bitmap Image => this.image;
+        override public Bitmap Image => this.image;
 
         /// <summary>
         /// Changes coordinates according to the current direction
         /// </summary>
         /// <param name="X"></param>
         /// <param name="Y"></param>
-        public void Step(ref int X, ref int Y)
+        override public void Step(ref int X, ref int Y)
         {
             X += step;
         }
 
-        public IDirection ChangeTrend(string command)
+        override public DirectionState ChangeTrend(string command)
         {
             Direction newtrend = Trends[command];
             switch (newtrend)

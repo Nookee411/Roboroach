@@ -15,7 +15,7 @@ namespace Robocroach
         private int y;
         public Bitmap image;
         const int step = 30;
-        IDirection direction;
+        DirectionState direction;
         //Loaction
         public Cockroach(Bitmap _image)
         {

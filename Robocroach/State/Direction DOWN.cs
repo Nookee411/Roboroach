@@ -8,7 +8,7 @@ using System.Runtime.Remoting.Messaging;
 
 namespace Robocroach.State
 {
-    class Direction_DOWN:DirectionState, IDirection
+    class Direction_DOWN:DirectionState
     {
         public Direction_DOWN(Bitmap image)
         {
@@ -21,19 +21,19 @@ namespace Robocroach.State
         /// </summary>
         public Direction Trend => Direction.Down;
 
-        public Bitmap Image => this.image;
+        override public Bitmap Image => this.image;
 
         /// <summary>
         /// Changes coordinates according to the current direction
         /// </summary>
         /// <param name="X"></param>
         /// <param name="Y"></param>
-        public void Step(ref int X, ref int Y)
+        override public void Step(ref int X, ref int Y)
         {
             Y += step;
         }
 
-        public IDirection ChangeTrend(string command)
+        override public DirectionState ChangeTrend(string command)
         {
             Direction newtrend = Trends[command];
             switch (newtrend)

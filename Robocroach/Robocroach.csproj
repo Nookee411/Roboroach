@@ -58,7 +58,6 @@
     <Compile Include="State\Direction UP .cs" />
     <Compile Include="State\DirectionState.cs" />
     <Compile Include="State\Direction DOWN.cs" />
-    <Compile Include="State\IDirection.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

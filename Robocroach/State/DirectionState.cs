@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Robocroach.State
 {
-    class DirectionState
+    abstract class DirectionState
     {
         protected Bitmap image;
         protected const int step = 30;
@@ -18,6 +18,10 @@ namespace Robocroach.State
             {"Left", Direction.Left },
             {"Right", Direction.Right }
         };
+            abstract public void Step(ref int X, ref int Y);
+            abstract public DirectionState ChangeTrend(string command);
+            Direction Trend { get; }
+            virtual public Bitmap Image { get; }
 
     }
 }
